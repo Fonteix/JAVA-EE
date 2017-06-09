@@ -5,21 +5,26 @@
  */
 package Servlet;
 
+import Modele.DBConnexion;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author p1410833
+ * @author p1522867
  */
-@WebServlet(name = "connexion", urlPatterns = {"/connexion"})
-public class connexion extends HttpServlet {
+public class validationLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,13 +35,13 @@ public class connexion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private DBConnexion dbConnexion;
+    private Connection cnx;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,11 +56,6 @@ public class connexion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd;
-        rd = request.getRequestDispatcher("WEB-INF/Templates/header.jsp");
-        rd.include(request, response);
-        rd = request.getRequestDispatcher("WEB-INF/connexion.jsp");
-        rd.include(request, response);
     }
 
     /**
@@ -69,7 +69,22 @@ public class connexion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+        
+        String pseudo = request.getParameter("pseudo");
+        String mdp = request.getParameter("mdp");
+        int id = this.verificationLogin(pseudo, mdp);
+        if(id>0){
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("id", id);
+            session.setAttribute("pseudo", pseudo);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+            
+        }
+        else{
+            this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+        }
+        
     }
 
     /**
@@ -81,5 +96,28 @@ public class connexion extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    private int verificationLogin(String pseudo, String mdp){
+        
+        dbConnexion = new DBConnexion();
+        cnx = dbConnexion.getConnection();
+        int id=-1;
+        
+        try {
+            String requete = "SELECT id FROM COMPTE WHERE pseudo= ? AND password=?";
+            PreparedStatement pstmt = cnx.prepareStatement(requete);
+            pstmt.setString(1, pseudo);
+            pstmt.setString(2, mdp);
+            
+            ResultSet rst = pstmt.executeQuery();
+            
+            if (rst.next()){
+                id = rst.getInt(1);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return id;
+    }
 }

@@ -7,6 +7,7 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,12 @@ public class accueil extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+        RequestDispatcher rd;
+        rd = request.getRequestDispatcher("WEB-INF/Templates/header.jsp");
+        rd.include(request, response);
+        rd = request.getRequestDispatcher("WEB-INF/accueil.jsp");
+        rd.include(request, response);
+        
     }
 
     /**

@@ -1,41 +1,49 @@
-<%-- 
-    Document   : acceuil
-    Created on : 7 juin 2017, 08:59:33
-    Author     : p1410833
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="css/materialize.css">
-        <script type="application/javascript" src="js/jquery.js"></script>
-        <script type="application/javascript" src="js/materialize.js"></script>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+        <!--test de connexion--> 
+        <% if(session.getAttribute("id")!=null){%>
+        <p>Bienvenue ${pseudo} votre id est ${id}</p>
+        <% } %>
         
-        <nav>
-            <div class="nav-wrapper">
-                <img src="image/logo.png" style="width:150px;height:50px;">
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="./accueil">Accueil</a></li>
-                    <li><a href="badges.html">Panier</a></li>
-                    <li><a href="./connexion">Connexion</a></li>
-                    <li><a href="./inscription">Inscription</a></li>
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><a href="./acceuil">Acceuil</a></li>
-                    <li><a href="badges.html">Panier</a></li>
-                    <li><a href="./connexion">Connexion</a></li>
-                    <li><a href="./inscription">Inscription</a></li>
+        
+        
 
-                </ul>
+        <!--SITE-->
+
+        <div class="parallax-container">
+            <div class="parallax"><img src="image/image1.png"></div>
+        </div>
+        <div class="section white">
+            <div class="row container">
+                <h2 class="header">POKESHOP</h2>
             </div>
-        </nav>
+            <section id="connexion">
+                <div class="row">
+                    <div class="col s12 center">
+                        <ul class="tabs">
+                            <li class="tab col s3"><a href="#test1">Pokeballs</a></li>
+                            <li class="tab col s3"><a class="active" href="#test2">Pokemons</a></li>
+                            <li class="tab col s3"><a href="#test3">Objets</a></li>
+                        </ul>
+                    </div>
+                    <div id="test1" class="col s12"><a href="./pokeballs"><img src="image/image3.png" style="width:40px;height:40px;">Voir toutes les pokeballs</a></div>
+                    <div id="test2" class="col s12"><a href="./pokemons"><img src="image/image4.png" style="width:40px;height:40px;">Voir tous les pokemons</a></div>
+                    <div id="test3" class="col s12"><a href="./objet"><img src="image/image5.png" style="width:40px;height:40px;">Voir tous les objets</div>
+                </div>
+            </section>
+            <script> $(document).ready(function () {
+                    $('ul.tabs').tabs();
+                });</script>
+            <script>$(document).ready(function () {
+                    $('ul.tabs').tabs('select_tab', 'tab_id');
+                });</script>
+
+        </div>
+        <div class="parallax-container">
+            <div class="parallax"><img src="image/image2.png"></div>
+        </div>
+        <script> $(document).ready(function () {
+                $('.parallax').parallax();
+            });</script>
+        
         <script>$( document ).ready(function(){ $(".button-collapse").sideNav();})</script>      
     </body>
 </html>

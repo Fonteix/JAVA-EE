@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-      <servlet>
+    <servlet>
         <servlet-name>connexion</servlet-name>
         <servlet-class>Servlet.connexion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validationLogin</servlet-name>
+        <servlet-class>Servlet.validationLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deconnexion</servlet-name>
+        <servlet-class>Servlet.deconnexion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>connexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <servlet>
         <servlet-name>inscription</servlet-name>
         <servlet-class>Servlet.inscription</servlet-class>
@@ -19,8 +24,6 @@
         <servlet-name>inscription</servlet-name>
         <url-pattern>/inscription</url-pattern>
     </servlet-mapping>
-    
-    
     <servlet>
         <servlet-name>accueil</servlet-name>
         <servlet-class>Servlet.accueil</servlet-class>
@@ -33,6 +36,51 @@
     <welcome-file-list>
         <welcome-file>accueil</welcome-file>
     </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>validationLogin</servlet-name>
+        <url-pattern>/validationLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deconnexion</servlet-name>
+        <url-pattern>/deconnexion</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>panier</servlet-name>
+        <servlet-class>Servlet.panier</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>panier</servlet-name>
+        <url-pattern>/panier</url-pattern>
+    </servlet-mapping>
+    
+    <!--articles-->
+    <servlet>
+        <servlet-name>pokeballs</servlet-name>
+        <servlet-class>Servlet.pokeballs</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pokeballs</servlet-name>
+        <url-pattern>/pokeballs</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>objet</servlet-name>
+        <servlet-class>Servlet.objet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>objet</servlet-name>
+        <url-pattern>/objet</url-pattern>
+    </servlet-mapping>
+       <servlet>
+        <servlet-name>pokemons</servlet-name>
+        <servlet-class>Servlet.pokemons</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pokemons</servlet-name>
+        <url-pattern>/pokemons</url-pattern>
+    </servlet-mapping>
+    
+    
+    
     <session-config>
         <session-timeout>
             30

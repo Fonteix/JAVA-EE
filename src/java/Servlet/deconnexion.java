@@ -7,19 +7,17 @@ package Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author p1410833
+ * @author p1522867
  */
-@WebServlet(name = "connexion", urlPatterns = {"/connexion"})
-public class connexion extends HttpServlet {
+public class deconnexion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,11 +49,9 @@ public class connexion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd;
-        rd = request.getRequestDispatcher("WEB-INF/Templates/header.jsp");
-        rd.include(request, response);
-        rd = request.getRequestDispatcher("WEB-INF/connexion.jsp");
-        rd.include(request, response);
+        HttpSession session  = request.getSession(true);
+        session.invalidate();
+        this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
     }
 
     /**
@@ -69,7 +65,7 @@ public class connexion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+        
     }
 
     /**

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import java.io.IOException;
@@ -14,12 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author p1410833
- */
-@WebServlet(name = "connexion", urlPatterns = {"/connexion"})
-public class connexion extends HttpServlet {
+@WebServlet(name = "article", urlPatterns = {"/article"})
+public class pokemons extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +26,15 @@ public class connexion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet article</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet article at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -54,7 +53,7 @@ public class connexion extends HttpServlet {
         RequestDispatcher rd;
         rd = request.getRequestDispatcher("WEB-INF/Templates/header.jsp");
         rd.include(request, response);
-        rd = request.getRequestDispatcher("WEB-INF/connexion.jsp");
+        rd = request.getRequestDispatcher("WEB-INF/pokemons.jsp");
         rd.include(request, response);
     }
 
@@ -69,7 +68,7 @@ public class connexion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       this.getServletContext().getRequestDispatcher("/WEB-INF/connexion.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/pokemons.jsp").forward(request, response);
     }
 
     /**
