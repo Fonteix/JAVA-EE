@@ -3,16 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/web/WEB-INF/Templates/header.jsp</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/src/java/Servlet/pokemons.java</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/web/WEB-INF/connexion.jsp</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/src/java/Servlet/connexion.java</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/src/java/Servlet/accueil.java</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/web/WEB-INF/pokeballs.jsp</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/src/java/Servlet/pokeballs.java</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/src/java/Servlet/panier.java</file>
-            <file>file:/C:/Users/EtiX42/Desktop/JAVA-EE-master/JAVA-EE-master/web/WEB-INF/objet.jsp</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/src/java/Servlet/accueil.java</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/src/java/Servlet/inscription.java</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/src/java/Servlet/connexion.java</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/src/java/Servlet/deconnexion.java</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/web/WEB-INF/accueil.jsp</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/web/WEB-INF/Templates/header.jsp</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/src/java/Servlet/validationLogin.java</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/web/WEB-INF/inscription.jsp</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/src/java/Servlet/validationInscription.java</file>
+            <file>file:/D:/Lucas/Google%20Drive/S3%20-%20IUT%20Info/JEE/Projet/JAVA-EE/web/WEB-INF/connexion.jsp</file>
         </group>
     </open-files>
 </project-private>

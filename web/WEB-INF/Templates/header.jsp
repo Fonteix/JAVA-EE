@@ -8,7 +8,7 @@
         <script type="application/javascript" src="js/materialize.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -22,11 +22,13 @@
                     <li><a href="./article"><i class="material-icons left">list</i>Article</a></li>
                     <li><a href="./panier"><i class="material-icons left">shopping_cart</i>Panier</a></li>
                         <% if (session.getAttribute("id") == null) {%>
-                    <li> <a href="./connexion"><i class="material-icons left">power_settings_new</i>Connexion</a></li>
+                    <li> <a href="./connexion">Connexion</a></li>
                         <% } else { %>
-                    <li><a href="./deconnexion">Déconnexion</a></li>
+                    <li><a href="./deconnexion"><i class="material-icons left">power_settings_new</i>Déconnexion</a></li>
                         <% } %>
+                    <% if (session.getAttribute("id") == null) {%>
                     <li><a href="./inscription">Inscription</a></li>
+                    <% } %>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="./accueil">Acceuil</a></li>
@@ -37,7 +39,9 @@
                         <% } else { %>
                     <li><a href="./deconnexion">Déconnexion</a></li>
                         <% }%>
+                    <% if (session.getAttribute("id") == null) {%>
                     <li><a href="./inscription">Inscription</a></li>
+                    <% } %>
                 </ul>
             </div>
         </nav>

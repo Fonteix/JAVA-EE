@@ -12,6 +12,10 @@
         <servlet-name>deconnexion</servlet-name>
         <servlet-class>Servlet.deconnexion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>validationInscription</servlet-name>
+        <servlet-class>Servlet.validationInscription</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>connexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
@@ -52,7 +56,6 @@
         <servlet-name>panier</servlet-name>
         <url-pattern>/panier</url-pattern>
     </servlet-mapping>
-    
     <!--articles-->
     <servlet>
         <servlet-name>pokeballs</servlet-name>
@@ -70,7 +73,7 @@
         <servlet-name>objet</servlet-name>
         <url-pattern>/objet</url-pattern>
     </servlet-mapping>
-       <servlet>
+    <servlet>
         <servlet-name>pokemons</servlet-name>
         <servlet-class>Servlet.pokemons</servlet-class>
     </servlet>
@@ -78,9 +81,10 @@
         <servlet-name>pokemons</servlet-name>
         <url-pattern>/pokemons</url-pattern>
     </servlet-mapping>
-    
-    
-    
+    <servlet-mapping>
+        <servlet-name>validationInscription</servlet-name>
+        <url-pattern>/validationInscription</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

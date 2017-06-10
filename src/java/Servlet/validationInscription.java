@@ -7,21 +7,23 @@ package Servlet;
 
 import Modele.DBConnexion;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author p1522867
+ * @author lucas
  */
-public class validationLogin extends HttpServlet {
+public class validationInscription extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +40,10 @@ public class validationLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -66,21 +71,27 @@ public class validationLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String prenom = request.getParameter("prenom");
+        String nom = request.getParameter("nom");
         String pseudo = request.getParameter("pseudo");
-        String mdp = request.getParameter("mdp");
-        int id = this.verificationLogin(pseudo, mdp);
-        if(id>0){
-            
-            HttpSession session = request.getSession();
-            session.setAttribute("id", id);
-            session.setAttribute("pseudo", pseudo);
-            response.sendRedirect("/projet/accueil");
-            
+        String password = request.getParameter("password");
+        
+        Pattern patternTxt= Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
+        Pattern patternPwd = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        
+        if(patternTxt.matcher(prenom).find() || patternTxt.matcher(nom).find() || prenom.isEmpty() || nom.isEmpty()){
+            request.setAttribute("erreurNom", "Nom ou Prenom Incorrect !");
+            getServletContext().getRequestDispatcher("/inscription").forward(request, response);
+        }
+        else if(patternPwd.matcher(pseudo).find() || patternPwd.matcher(password).find() || pseudo.isEmpty() || password.isEmpty()){
+            request.setAttribute("erreurNom", "Pseudo ou Mot de Passe Incorrect !");
+            getServletContext().getRequestDispatcher("/inscription").forward(request, response);
         }
         else{
+            enregistrementInscription(prenom,nom,pseudo,password);
             response.sendRedirect("/projet/connexion");
         }
+        
         
     }
 
@@ -94,25 +105,22 @@ public class validationLogin extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    private int verificationLogin(String pseudo, String mdp){
+    private int enregistrementInscription(String prenom, String nom, String pseudo, String mdp){
         
         dbConnexion = new DBConnexion();
         cnx = dbConnexion.getConnection();
         int id=-1;
         
         try {
-            String requete = "SELECT id FROM COMPTE WHERE pseudo= ? AND password=?";
+            String requete = "INSERT INTO COMPTE (prenom,nom,pseudo,password) VALUE (?,?,?,?)";
             PreparedStatement pstmt = cnx.prepareStatement(requete);
-            pstmt.setString(1, pseudo);
-            pstmt.setString(2, mdp);
+            pstmt.setString(1, prenom);
+            pstmt.setString(2, nom);
+            pstmt.setString(3, pseudo);
+            pstmt.setString(4, mdp);
             
-            ResultSet rst = pstmt.executeQuery();
+            pstmt.executeUpdate();
             
-            if (rst.next()){
-                id = rst.getInt(1);
-            }
-            
-            rst.close();
             pstmt.close();
             cnx.close();
             
