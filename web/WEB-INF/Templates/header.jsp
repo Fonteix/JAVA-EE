@@ -7,7 +7,7 @@
         <script type="application/javascript" src="js/jquery.js"></script>
         <script type="application/javascript" src="js/materialize.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>TODO supply a title</title>
+        <title>POKESHOP</title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
