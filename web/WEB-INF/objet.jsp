@@ -1,3 +1,5 @@
+
+<jsp:include page="Templates/header.jsp" />
 <!-- ARTICLES-->
 
 <c:forEach items="${liste}" var="article" >

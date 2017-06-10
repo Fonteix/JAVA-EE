@@ -1,3 +1,4 @@
+<jsp:include page="Templates/header.jsp" />
 <!--CONNEXION-->
 <section id="connexion">
     <div class="container card-panel" style="padding: 15px;">

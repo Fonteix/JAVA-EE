@@ -1,4 +1,5 @@
-        <!--test de connexion--> 
+<jsp:include page="Templates/header.jsp" />        
+<!--test de connexion--> 
         <% if(session.getAttribute("id")!=null){%>
         <p>Bienvenue ${pseudo} votre id est ${id}</p>
         <% } %>

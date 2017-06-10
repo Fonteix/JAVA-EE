@@ -25,15 +25,6 @@ public class panier extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet accueil</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet accueil at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
@@ -50,8 +41,6 @@ public class panier extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd;
-        rd = request.getRequestDispatcher("WEB-INF/Templates/header.jsp");
-        rd.include(request, response);
         rd = request.getRequestDispatcher("WEB-INF/panier.jsp");
         rd.include(request, response);
         

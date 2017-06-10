@@ -79,11 +79,11 @@ public class validationInscription extends HttpServlet {
         Pattern patternTxt= Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
         Pattern patternPwd = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         
-        if(patternTxt.matcher(prenom).find() || patternTxt.matcher(nom).find() || prenom.isEmpty() || nom.isEmpty()){
+        if(patternTxt.matcher(prenom).find() || patternTxt.matcher(nom).find() || prenom.trim().length()<2|| nom.trim().length()<2){
             request.setAttribute("erreurNom", "Nom ou Prenom Incorrect !");
             getServletContext().getRequestDispatcher("/inscription").forward(request, response);
         }
-        else if(patternPwd.matcher(pseudo).find() || patternPwd.matcher(password).find() || pseudo.isEmpty() || password.isEmpty()){
+        else if(patternPwd.matcher(pseudo).find() || patternPwd.matcher(password).find() || pseudo.trim().length()<2 || password.trim().length()<4){
             request.setAttribute("erreurNom", "Pseudo ou Mot de Passe Incorrect !");
             getServletContext().getRequestDispatcher("/inscription").forward(request, response);
         }

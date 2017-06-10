@@ -1,5 +1,5 @@
 <!--FORMULAIRE-->
-
+<jsp:include page="Templates/header.jsp" />
 
 <c:if test="${not empty erreurNom}">
     <p>${erreurNom}</p>

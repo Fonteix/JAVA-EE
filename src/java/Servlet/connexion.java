@@ -52,8 +52,6 @@ public class connexion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd;
-        rd = request.getRequestDispatcher("WEB-INF/Templates/header.jsp");
-        rd.include(request, response);
         rd = request.getRequestDispatcher("WEB-INF/connexion.jsp");
         rd.include(request, response);
     }
