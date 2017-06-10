@@ -66,7 +66,7 @@ public class accueil extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
     }
 
     /**

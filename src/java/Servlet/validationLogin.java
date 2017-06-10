@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,8 @@ public class validationLogin extends HttpServlet {
             
         }
         else{
-            response.sendRedirect("/projet/connexion");
+            request.setAttribute("erreurConnexion", "Identifiant ou mot de passe incorrect");
+            getServletContext().getRequestDispatcher("/connexion").forward(request, response);
         }
         
     }

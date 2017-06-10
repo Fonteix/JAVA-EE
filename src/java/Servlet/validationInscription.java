@@ -80,16 +80,21 @@ public class validationInscription extends HttpServlet {
         Pattern patternPwd = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
         
         if(patternTxt.matcher(prenom).find() || patternTxt.matcher(nom).find() || prenom.trim().length()<2|| nom.trim().length()<2){
-            request.setAttribute("erreurNom", "Nom ou Prenom Incorrect !");
+            request.setAttribute("erreurChamp", "Nom ou Prénom Incorrect !");
             getServletContext().getRequestDispatcher("/inscription").forward(request, response);
         }
-        else if(patternPwd.matcher(pseudo).find() || patternPwd.matcher(password).find() || pseudo.trim().length()<2 || password.trim().length()<4){
-            request.setAttribute("erreurNom", "Pseudo ou Mot de Passe Incorrect !");
+        else if(patternPwd.matcher(pseudo).find() ||  pseudo.trim().length()<2 ){
+            request.setAttribute("erreurChamp", "Le pseudo ne doit contenir que des lettres et des chiffres");
+            getServletContext().getRequestDispatcher("/inscription").forward(request, response);
+        }
+        else if (patternPwd.matcher(password).find() || password.trim().length()<4){
+            request.setAttribute("erreurChamp", "Le mot de passe ne doit contenir que des lettres et des chiffres et doit contenir 4 caractères au minimum");
             getServletContext().getRequestDispatcher("/inscription").forward(request, response);
         }
         else{
             enregistrementInscription(prenom,nom,pseudo,password);
-            response.sendRedirect("/projet/connexion");
+            request.setAttribute("enregistrementOk", "Votre compte a bien été créé !");
+            getServletContext().getRequestDispatcher("/connexion").forward(request, response);
         }
         
         

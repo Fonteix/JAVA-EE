@@ -51,7 +51,8 @@ public class deconnexion extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session  = request.getSession(true);
         session.invalidate();
-        response.sendRedirect("/projet/connexion");
+        request.setAttribute("deconnexion", "Vous êtes déconnecté");
+        getServletContext().getRequestDispatcher("/connexion").forward(request, response);
     }
 
     /**

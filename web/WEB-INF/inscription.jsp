@@ -1,10 +1,14 @@
-<!--FORMULAIRE-->
+
 <jsp:include page="Templates/header.jsp" />
 
-<c:if test="${not empty erreurNom}">
-    <p>${erreurNom}</p>
-</c:if>
+<!--MESSAGE ALERTE-->
+<% if (request.getAttribute("erreurChamp")!=null) {%>
+    <div class="row">
+        <div id="alerteInscription" class="col s8 offset-s2 center-align card-panel red accent-2"><span class="white-text flow-text"><strong>${erreurChamp}</strong></span></div>
+    </div>
+<% } %>
 
+<!--FORMULAIRE-->
 <section id="connexion">
     <div class="container card-panel" style="padding: 15px;">
         <div class="col s6 center">

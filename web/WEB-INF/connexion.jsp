@@ -1,4 +1,27 @@
+<!--HEADER-->
 <jsp:include page="Templates/header.jsp" />
+
+<!--MESSAGE ALERTE-->
+<% if (request.getAttribute("erreurConnexion")!=null) {%>
+    <div class="row">
+        <div class="col s8 offset-s2 center-align card-panel red accent-2"><span class="white-text flow-text"><strong>${erreurConnexion}</strong></span></div>
+    </div>
+<% } %>
+    
+<% if (request.getAttribute("deconnexion")!=null) {%>
+    
+    <div class="row">
+        <div class="col s8 offset-s2 center-align card-panel red accent-2"><span class="white-text flow-text"><strong>${deconnexion}</strong></span></div>
+    </div>
+<% } %>
+
+<% if (request.getAttribute("enregistrementOk")!=null) {%>
+    
+    <div class="row">
+        <div class="col s8 offset-s2 center-align card-panel light-green"><span class="white-text flow-text"><strong>${enregistrementOk}</strong></span></div>
+    </div>
+<% } %>
+
 <!--CONNEXION-->
 <section id="connexion">
     <div class="container card-panel" style="padding: 15px;">
