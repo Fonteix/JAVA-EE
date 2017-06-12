@@ -6,6 +6,7 @@
 package Servlet;
 
 import Modele.DBConnexion;
+import Modele.ModelConnexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,6 +36,7 @@ public class validationLogin extends HttpServlet {
      */
     private DBConnexion dbConnexion;
     private Connection cnx;
+    private ModelConnexion monModel;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -70,7 +72,8 @@ public class validationLogin extends HttpServlet {
         
         String pseudo = request.getParameter("pseudo");
         String mdp = request.getParameter("mdp");
-        int id = this.verificationLogin(pseudo, mdp);
+        monModel = new ModelConnexion();
+        int id = monModel.verificationLogin(pseudo, mdp);
         if(id>0){
             
             HttpSession session = request.getSession();
@@ -96,31 +99,5 @@ public class validationLogin extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    private int verificationLogin(String pseudo, String mdp){
-        
-        dbConnexion = new DBConnexion();
-        cnx = dbConnexion.getConnection();
-        int id=-1;
-        
-        try {
-            String requete = "SELECT id FROM COMPTE WHERE pseudo= ? AND password=?";
-            PreparedStatement pstmt = cnx.prepareStatement(requete);
-            pstmt.setString(1, pseudo);
-            pstmt.setString(2, mdp);
-            
-            ResultSet rst = pstmt.executeQuery();
-            
-            if (rst.next()){
-                id = rst.getInt(1);
-            }
-            
-            rst.close();
-            pstmt.close();
-            cnx.close();
-            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return id;
-    }
+    
 }
