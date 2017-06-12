@@ -5,13 +5,15 @@
  */
 package Métier;
 
+import java.io.Serializable;
+
 /**
  *
  * @author p1410833
  */
-public class Article {
+public class Article implements Serializable {
     
-     private int numArticle;
+    private int numArticle;
     private String nomArticle;
     private int prixArticle;
     private String typeArticle;

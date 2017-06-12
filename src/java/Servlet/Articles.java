@@ -37,6 +37,10 @@ public class Articles extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    public void init(){
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -57,9 +61,11 @@ public class Articles extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd;
-        rd = request.getRequestDispatcher("WEB-INF/Article.jsp");
-        rd.include(request, response);
+        maListe = new ArrayList<>();
+        monModel = new ModeleArticle();
+        monModel.chargerArticle(maListe);
+        request.setAttribute("liste", maListe);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);
     }
 
     /**
@@ -73,10 +79,11 @@ public class Articles extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         maListe = new ArrayList<>();
         monModel = new ModeleArticle();
         monModel.chargerArticle(maListe);
-        request.setAttribute("listeArticle", monModel);
+        request.setAttribute("liste", maListe);
         this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);
     }
 

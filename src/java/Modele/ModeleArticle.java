@@ -32,11 +32,11 @@ public class ModeleArticle {
         cnx = dbConnexion.getConnection();
         
         try {
-            String requete = "SELECT nomArticle, prixArticle, typeArticle FROM ARTICLE";
+            String requete = "SELECT * FROM ARTICLE";
             PreparedStatement pstmt = cnx.prepareStatement(requete);
             ResultSet rst = pstmt.executeQuery();
             
-            if (rst.next()){
+            while (rst.next()){
                 int id = rst.getInt(1);
                 String nom = rst.getString(2);
                 int prix = rst.getInt(3);

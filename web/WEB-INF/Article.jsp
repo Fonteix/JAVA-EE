@@ -11,14 +11,13 @@
 <!-- ARTICLES-->
 <%  
 // retrieve your list from the request, with casting 
-ArrayList<Article> list = (ArrayList<Article>) request.getAttribute("listeArticle");
+ArrayList<Article> list = (ArrayList<Article>) request.getAttribute("liste");
 
 // print the information about every category of the list
 for(Article article : list) {
     out.println(article.getNumArticle());
     out.println(article.getNomArticle());
     out.println(article.getPrixArticle());
-    out.println(article.getTypeArticle());
 }
 %>
 
