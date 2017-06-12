@@ -1,4 +1,4 @@
-package Modele;
+package Métier;
 
 import java.io.Serializable;
 
