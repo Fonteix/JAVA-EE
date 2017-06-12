@@ -4,9 +4,23 @@
     Author     : p1410833
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Métier.Article"%>
 <jsp:include page="Templates/header.jsp" />
 
 <!-- ARTICLES-->
+<%  
+// retrieve your list from the request, with casting 
+ArrayList<Article> list = (ArrayList<Article>) request.getAttribute("listeArticle");
+
+// print the information about every category of the list
+for(Article article : list) {
+    out.println(article.getNumArticle());
+    out.println(article.getNomArticle());
+    out.println(article.getPrixArticle());
+    out.println(article.getTypeArticle());
+}
+%>
 
 <c:forEach items="${liste}" var="Article" >
 

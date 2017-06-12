@@ -57,42 +57,24 @@
         <url-pattern>/panier</url-pattern>
     </servlet-mapping>
     <!--articles-->
-    <servlet>
-        <servlet-name>pokeballs</servlet-name>
-        <servlet-class>Servlet.pokeballs</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>pokeballs</servlet-name>
-        <url-pattern>/pokeballs</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>objet</servlet-name>
-        <servlet-class>Servlet.objet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>objet</servlet-name>
-        <url-pattern>/objet</url-pattern>
-    </servlet-mapping>
+ 
+   
+  
+   
     
     <servlet>
-        <servlet-name>Article</servlet-name>
-        <servlet-class>Servlet.article</servlet-class>
+        <servlet-name>Articles</servlet-name>
+        <servlet-class>Servlet.Articles</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Article</servlet-name>
-        <url-pattern>/Article</url-pattern>
+        <servlet-name>Articles</servlet-name>
+        <url-pattern>/Articles</url-pattern>
     </servlet-mapping>
     
     
     
-    <servlet>
-        <servlet-name>pokemons</servlet-name>
-        <servlet-class>Servlet.pokemons</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>pokemons</servlet-name>
-        <url-pattern>/pokemons</url-pattern>
-    </servlet-mapping>
+   
+  
     <servlet-mapping>
         <servlet-name>validationInscription</servlet-name>
         <url-pattern>/validationInscription</url-pattern>

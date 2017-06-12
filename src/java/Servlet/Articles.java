@@ -76,6 +76,7 @@ public class Articles extends HttpServlet {
         maListe = new ArrayList<>();
         monModel = new ModeleArticle();
         monModel.chargerArticle(maListe);
+        request.setAttribute("listeArticle", monModel);
         this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);
     }
 

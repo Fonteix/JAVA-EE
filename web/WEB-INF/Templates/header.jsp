@@ -19,7 +19,7 @@
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="./accueil">Accueil</a></li>
-                    <li><a href="./article"><i class="material-icons left">list</i>Article</a></li>
+                    <li><a href="./Article"><i class="material-icons left">list</i>Article</a></li>
                     <li><a href="./panier"><i class="material-icons left">shopping_cart</i>Panier</a></li>
                         <% if (session.getAttribute("id") == null) {%>
                     <li> <a href="./connexion">Connexion</a></li>
@@ -32,7 +32,7 @@
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
                     <li><a href="./accueil">Accueil</a></li>
-                    <li><a href="./article">Article</a></li>
+                    <li><a href="./Article">Article</a></li>
                     <li><a href="./panier">Panier</a></li>
                         <% if (session.getAttribute("id") == null) {%>
                     <li><a href="./connexion">Connexion</a></li>
