@@ -6,6 +6,7 @@
 package Servlet;
 
 import Modele.DBConnexion;
+import Modele.ModeleInscription;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -34,8 +35,7 @@ public class validationInscription extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private DBConnexion dbConnexion;
-    private Connection cnx;
+    private ModeleInscription monModel;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -75,6 +75,7 @@ public class validationInscription extends HttpServlet {
         String nom = request.getParameter("nom");
         String pseudo = request.getParameter("pseudo");
         String password = request.getParameter("password");
+        monModel = new ModeleInscription();
         
         Pattern patternTxt= Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
         Pattern patternPwd = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
@@ -92,7 +93,7 @@ public class validationInscription extends HttpServlet {
             getServletContext().getRequestDispatcher("/inscription").forward(request, response);
         }
         else{
-            enregistrementInscription(prenom,nom,pseudo,password);
+            monModel.enregistrementInscription(prenom,nom,pseudo,password);
             request.setAttribute("enregistrementOk", "Votre compte a bien été créé !");
             getServletContext().getRequestDispatcher("/connexion").forward(request, response);
         }
@@ -110,28 +111,5 @@ public class validationInscription extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    private int enregistrementInscription(String prenom, String nom, String pseudo, String mdp){
-        
-        dbConnexion = new DBConnexion();
-        cnx = dbConnexion.getConnection();
-        int id=-1;
-        
-        try {
-            String requete = "INSERT INTO COMPTE (prenom,nom,pseudo,password) VALUE (?,?,?,?)";
-            PreparedStatement pstmt = cnx.prepareStatement(requete);
-            pstmt.setString(1, prenom);
-            pstmt.setString(2, nom);
-            pstmt.setString(3, pseudo);
-            pstmt.setString(4, mdp);
-            
-            pstmt.executeUpdate();
-            
-            pstmt.close();
-            cnx.close();
-            
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return id;
-    }
+    
 }
