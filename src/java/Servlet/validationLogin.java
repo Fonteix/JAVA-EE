@@ -6,7 +6,7 @@
 package Servlet;
 
 import Modele.DBConnexion;
-import Modele.ModelConnexion;
+import Modele.ModeleConnexion;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class validationLogin extends HttpServlet {
      */
     private DBConnexion dbConnexion;
     private Connection cnx;
-    private ModelConnexion monModel;
+    private ModeleConnexion monModel;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -72,7 +72,7 @@ public class validationLogin extends HttpServlet {
         
         String pseudo = request.getParameter("pseudo");
         String mdp = request.getParameter("mdp");
-        monModel = new ModelConnexion();
+        monModel = new ModeleConnexion();
         int id = monModel.verificationLogin(pseudo, mdp);
         if(id>0){
             

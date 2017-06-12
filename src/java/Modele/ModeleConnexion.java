@@ -14,12 +14,12 @@ import java.sql.SQLException;
  *
  * @author p1522867
  */
-public class ModelConnexion {
+public class ModeleConnexion {
     
     private DBConnexion dbConnexion;
     private Connection cnx;
 
-    public ModelConnexion() {
+    public ModeleConnexion() {
     }
     
         

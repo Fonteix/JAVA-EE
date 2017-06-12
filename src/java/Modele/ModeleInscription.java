@@ -13,12 +13,12 @@ import java.sql.SQLException;
  *
  * @author p1522867
  */
-public class ModelInscription {
+public class ModeleInscription {
     
     private DBConnexion dbConnexion;
     private Connection cnx;
 
-    public ModelInscription() {
+    public ModeleInscription() {
     }
     
         

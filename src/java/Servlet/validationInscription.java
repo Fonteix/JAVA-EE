@@ -6,7 +6,7 @@
 package Servlet;
 
 import Modele.DBConnexion;
-import Modele.ModelInscription;
+import Modele.ModeleInscription;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -35,7 +35,7 @@ public class validationInscription extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private ModelInscription monModel;
+    private ModeleInscription monModel;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -75,7 +75,7 @@ public class validationInscription extends HttpServlet {
         String nom = request.getParameter("nom");
         String pseudo = request.getParameter("pseudo");
         String password = request.getParameter("password");
-        monModel = new ModelInscription();
+        monModel = new ModeleInscription();
         
         Pattern patternTxt= Pattern.compile("[^a-z ]", Pattern.CASE_INSENSITIVE);
         Pattern patternPwd = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
