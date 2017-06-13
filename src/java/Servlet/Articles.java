@@ -14,6 +14,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,6 +62,7 @@ public class Articles extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         maListe = new ArrayList<>();
         monModel = new ModeleArticle();
         monModel.chargerArticle(maListe);
@@ -79,11 +81,15 @@ public class Articles extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String numArticle = request.getParameter("numArticle");
+        String nomArticle = request.getParameter("nomArticle");
         
+        System.out.println(numArticle);
         maListe = new ArrayList<>();
         monModel = new ModeleArticle();
         monModel.chargerArticle(maListe);
         request.setAttribute("liste", maListe);
+        request.setAttribute("ajoutPanier", "Votre article " + nomArticle+" a bien été ajouté au panier");
         this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);
     }
 
