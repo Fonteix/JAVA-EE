@@ -24,9 +24,10 @@
                         <li class="tab col s3"><a href="#test3">Objets</a></li>
                     </ul>
                 </div>
-                <div id="test1" class="col s12"><a href="./pokeballs"><img src="image/image3.png" style="width:40px;height:40px;">Voir toutes les pokeballs</a></div>
-                <div id="test2" class="col s12"><a href="./pokemons"><img src="image/image4.png" style="width:40px;height:40px;">Voir tous les pokemons</a></div>
-                <div id="test3" class="col s12"><a href="./objet"><img src="image/image5.png" style="width:40px;height:40px;">Voir tous les objets</div>
+                <div id="test1" class="col s12">
+                    <a href="./Articles"><img src="image/image3.png" style="width:40px;height:40px;">Voir toutes les pokeballs</a></div>
+                <div id="test2" class="col s12"><a href="./Articles"><img src="image/image4.png" style="width:40px;height:40px;">Voir tous les pokemons</a></div>
+                <div id="test3" class="col s12"><a href="./Articles"><img src="image/image5.png" style="width:40px;height:40px;">Voir tous les objets</div>
             </div>
         </section>
         <script> $(document).ready(function () {
