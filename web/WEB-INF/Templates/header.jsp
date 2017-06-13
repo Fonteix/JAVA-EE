@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,6 +22,9 @@
                     <li><a href="./accueil">Accueil</a></li>
                     <li><a href="./Articles"><i class="material-icons left">list</i>Article</a></li>
                     <li><a href="./panier"><i class="material-icons left">shopping_cart</i>Panier</a></li>
+                    <% if (session.getAttribute("id") != null) {%>
+                    <li><a href="./infoCompte">Mon Compte</a></li>
+                        <% } %>
                         <% if (session.getAttribute("id") == null) {%>
                     <li> <a href="./connexion">Connexion</a></li>
                         <% } else { %>
@@ -34,6 +38,9 @@
                     <li><a href="./accueil">Accueil</a></li>
                     <li><a href="./Article">Article</a></li>
                     <li><a href="./panier">Panier</a></li>
+                    <% if (session.getAttribute("id") != null) {%>
+                    <li><a href="./infoCompte">Mon Compte</a></li>
+                        <% } %>
                         <% if (session.getAttribute("id") == null) {%>
                     <li><a href="./connexion">Connexion</a></li>
                         <% } else { %>

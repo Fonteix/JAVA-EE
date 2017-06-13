@@ -16,6 +16,10 @@
         <servlet-name>validationInscription</servlet-name>
         <servlet-class>Servlet.validationInscription</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>infoCompte</servlet-name>
+        <servlet-class>Servlet.infoCompte</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>connexion</servlet-name>
         <url-pattern>/connexion</url-pattern>
@@ -57,11 +61,6 @@
         <url-pattern>/panier</url-pattern>
     </servlet-mapping>
     <!--articles-->
- 
-   
-  
-   
-    
     <servlet>
         <servlet-name>Articles</servlet-name>
         <servlet-class>Servlet.Articles</servlet-class>
@@ -70,14 +69,13 @@
         <servlet-name>Articles</servlet-name>
         <url-pattern>/Articles</url-pattern>
     </servlet-mapping>
-    
-    
-    
-   
-  
     <servlet-mapping>
         <servlet-name>validationInscription</servlet-name>
         <url-pattern>/validationInscription</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>infoCompte</servlet-name>
+        <url-pattern>/infoCompte</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

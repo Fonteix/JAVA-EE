@@ -1,14 +1,18 @@
+package Servlet;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
 
-import Modele.DBConnexion;
 import Modele.ModeleCompte;
+import Métier.Compte;
 import java.io.IOException;
-import java.sql.Connection;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +21,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author p1522867
+ * @author lucas
  */
-public class validationLogin extends HttpServlet {
+public class infoCompte extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +34,14 @@ public class validationLogin extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private DBConnexion dbConnexion;
-    private Connection cnx;
     private ModeleCompte monModel;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,6 +56,16 @@ public class validationLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            HttpSession session = request.getSession();
+            int id = (int) session.getAttribute("id");
+            monModel = new ModeleCompte();
+            Compte monCompte = monModel.chargerProfil(id);
+            request.setAttribute("monCompte", monCompte);
+            getServletContext().getRequestDispatcher("/WEB-INF/infoCompte.jsp").forward(request, response);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -65,24 +79,6 @@ public class validationLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String pseudo = request.getParameter("pseudo");
-        String mdp = request.getParameter("mdp");
-        monModel = new ModeleCompte();
-        int id = monModel.verificationLogin(pseudo, mdp);
-        if(id>0){
-            
-            HttpSession session = request.getSession();
-            session.setAttribute("id", id);
-            session.setAttribute("pseudo", pseudo);
-            response.sendRedirect("/projet/accueil");
-            
-        }
-        else{
-            request.setAttribute("erreurConnexion", "Identifiant ou mot de passe incorrect");
-            getServletContext().getRequestDispatcher("/connexion").forward(request, response);
-        }
-        
     }
 
     /**
@@ -94,6 +90,5 @@ public class validationLogin extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    
+
 }
