@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="Templates/header.jsp" />
 
 
@@ -19,20 +20,13 @@
     <jsp:useBean id="panier" scope="session" class="Modele.ModelePanier" />
     <ul class="collection">
         <li class="collection-item avatar">
-        <c:choose>
-            <c:when test="${panier.getNombreArticle()==0}" > 
-                Panier vide !
-            </c:when> 
-            <c:otherwise>
-                <c:forEach var="articlesPanier" items="${panier.getArticlePanier()}" varStatus="counter">
-                    <form name="item" method="POST" action="#">
-                        <input type='hidden' name='itemIndex' value='<c:out value="${counter.count}"/>'>
-                        <input class="button" type="submit" name="action" value="Supprimer"></BR>
-                    </form>
-                </c:forEach>   
-                Total du panier: $<c:out value="${panier.getOrderTotal()}"/>
-            </c:otherwise>
-        </c:choose>
+        
+                        
+                        <c:out value="${panier.numArticle}"/> </BR> 
+                        <!--panier viens de ModelePanier.java-->
+                        <!--numArticle viens de ModeleArticlePanier-->
+                           
+                    
         </li>
     </ul>
 </div>
