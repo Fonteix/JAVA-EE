@@ -97,6 +97,7 @@ public class Articles extends HttpServlet {
                 MonCookie.setMaxAge(60*60*24*365);
                 response.addCookie(MonCookie);
             }
+            
         }
         
         System.out.println(numArticle);
