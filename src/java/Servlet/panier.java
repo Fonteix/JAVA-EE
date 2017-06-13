@@ -57,7 +57,7 @@ public class panier extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/ModelePanier.jsp").forward(request, response);
     }
 
     /**
