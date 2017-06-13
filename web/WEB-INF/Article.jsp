@@ -15,6 +15,13 @@
         <div class="col s8 offset-s2 center-align card-panel light-green"><span class="white-text flow-text"><strong>${ajoutPanier}</strong></span></div>
     </div>
 <% } %>
+<% Cookie[] cookies = request.getCookies();
+
+    for (Cookie cook : cookies){
+        
+    }
+
+%>
 
 <c:forEach items="${liste}" var="article" >
     <form action="Articles" method="post">

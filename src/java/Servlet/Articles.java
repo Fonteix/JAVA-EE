@@ -84,21 +84,31 @@ public class Articles extends HttpServlet {
             throws ServletException, IOException {
         String numArticle = request.getParameter("numArticle");
         String nomArticle = request.getParameter("nomArticle");
-        Cookie[] cookies = request.getCookies();
+//        Cookie[] cookies = request.getCookies();
+        Cookie cookie = new Cookie("Test","Hello World");
+        response.addCookie(cookie);
         
-        
-        for(int i=0; i < cookies.length; i++) {
-            Cookie MonCookie= cookies[i];
-            if (MonCookie.getName().equals("panier")) {
-                String id = cookies[i].getValue();
-                List<String> listNum = new ArrayList<>(Arrays.asList(id.split(",")));
-                listNum.add(numArticle);
-                String listeFinale = String.join(",", listNum);
-                MonCookie.setMaxAge(60*60*24*365);
-                response.addCookie(MonCookie);
-            }
+//        for(int i=0; i < cookies.length; i++) {
+//            Cookie MonCookie= cookies[i];
+//            if (MonCookie.getName().equals("panier")) {
+//                String id = cookies[i].getValue();
+//                List<String> listNum = new ArrayList<>(Arrays.asList(id.split(",")));
+//                listNum.add(numArticle);
+//                String listeFinale = String.join(",", listNum);
+//                MonCookie.setValue(listeFinale);
+//                MonCookie.setMaxAge(60*60*24*365);
+//                response.addCookie(MonCookie);
+//            }
+//            else{
+//                List<String> listNum = new ArrayList<>();
+//                listNum.add(numArticle);
+//                String listeFinale = String.join(",", listNum);
+//                MonCookie.setValue(listeFinale);
+//                MonCookie.setMaxAge(60*60*24*365);
+//                response.addCookie(MonCookie);
+//            }
             
-        }
+//        }
         
         System.out.println(numArticle);
         maListe = new ArrayList<>();
