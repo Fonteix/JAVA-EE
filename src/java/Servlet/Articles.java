@@ -10,6 +10,7 @@ import Métier.Article;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,6 +84,20 @@ public class Articles extends HttpServlet {
             throws ServletException, IOException {
         String numArticle = request.getParameter("numArticle");
         String nomArticle = request.getParameter("nomArticle");
+        Cookie[] cookies = request.getCookies();
+        
+        
+        for(int i=0; i < cookies.length; i++) {
+            Cookie MonCookie= cookies[i];
+            if (MonCookie.getName().equals("panier")) {
+                String id = cookies[i].getValue();
+                List<String> listNum = new ArrayList<>(Arrays.asList(id.split(",")));
+                listNum.add(numArticle);
+                String listeFinale = String.join(",", listNum);
+                MonCookie.setMaxAge(60*60*24*365);
+                response.addCookie(MonCookie);
+            }
+        }
         
         System.out.println(numArticle);
         maListe = new ArrayList<>();
