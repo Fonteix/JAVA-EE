@@ -41,8 +41,10 @@ public class ModeleArticle {
                 String nom = rst.getString(2);
                 int prix = rst.getInt(3);
                 String type = rst.getString(4);
-                Article article = new Article(id, nom, prix, type);
+                String image = rst.getString(5);
+                Article article = new Article(id, nom, prix, type, image);
                 listeArticle.add(article);
+                System.out.println(article);
             }
             
             rst.close();
