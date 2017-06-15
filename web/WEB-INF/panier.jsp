@@ -1,5 +1,7 @@
 <%@page import="Métier.Article"%>
 <%@page import="java.util.List"%>
+
+
 <jsp:include page="Templates/header.jsp" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -66,6 +68,15 @@
 
             </c:otherwise>
         </c:choose>
+
+        
+                        
+                        <c:out value="${panier.numArticle}"/> </BR> 
+                        <!--panier viens de ModelePanier.java-->
+                        <!--numArticle viens de ModeleArticlePanier-->
+                           
+                    
+
         </li>
     </ul>
 </div>

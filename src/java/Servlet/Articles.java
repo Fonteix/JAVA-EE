@@ -123,6 +123,7 @@ public class Articles extends HttpServlet {
         request.setAttribute("liste", maListe);
         request.setAttribute("ajoutPanier", "Votre article " + nomArticle+" a bien été ajouté au panier");
         this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);
+        //this.getServletContext().getRequestDispatcher("/WEB-INF/ModeleArticlePanier.jsp").forward(request, response);
     }
 
     /**
