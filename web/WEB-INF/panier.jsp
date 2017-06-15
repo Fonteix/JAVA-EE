@@ -43,33 +43,3 @@
         </div>
     </div>
 </div>
-
-<div class="col-10 panier">
-    <jsp:useBean id="panier" scope="session" class="Modele.ModelePanier" />
-    <ul class="collection">
-        <li class="collection-item avatar">
-        <c:choose>
-            <c:when test="${panier.getNombreArticle()==0}" > 
-                Panier vide !
-            </c:when> 
-            <c:otherwise>
-                <c:forEach var="articlesPanier" items="${panier.getArticlePanier()}" varStatus="counter">
-                    <form name="item" method="POST" action="#">
-                        <c:out value="${articlesPanier.partNumber}"/> </BR>
-                        <input type='hidden' name='itemIndex' value='<c:out value="${counter.count}"/>'>
-                        <input type='text' name="quantity" value='<c:out value="${articlesPanier.quantity}"/>' size='2'>
-                        <input class="button" type="submit" name="action" value="Delete"></BR>
-
-
-                        Prix/Total : <c:out value="${articlesPanier.totalCost}"/> euros</BR></BR>
-                    </form>
-                </c:forEach>   
-                Total du panier: $<c:out value="${panier.getOrderTotal()}"/>
-
-            </c:otherwise>
-        </c:choose>                           
-                    
-
-        </li>
-    </ul>
-</div>
