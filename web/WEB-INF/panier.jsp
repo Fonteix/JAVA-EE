@@ -1,20 +1,47 @@
+<%@page import="Métier.Article"%>
+<%@page import="java.util.List"%>
 <jsp:include page="Templates/header.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<!--Acienne version --> 
-<c:forEach items="${liste}" var="Article" >
+<% if (request.getAttribute("confirmationAchat")!=null) {%>
+    <div class="row">
+        <div class="col s8 offset-s2 center-align card-panel light-green"><span class="white-text flow-text"><strong>${confirmationAchat}</strong></span></div>
+    </div>
+<% } %>
+    
+<% if(request.getAttribute("listeArticle")!=null){%>
+<c:forEach items="${listeArticle}" var="article" >
     <ul class="collection">
         <li class="collection-item avatar">
             <img src="images/yuna.jpg" alt="" class="circle">
-            <span class="title">nomArticle</span>
-            <p>type article <br>
-                Prix/Unité: <c:out value="${articlesPanier.unitCost}"/> euros</BR>
+            <span class="title"><c:out value="${article['nomArticle']}"/></span>
+            <p><c:out value="${article['typeArticle']}"/><br>
+                Prix/Unité: <c:out value="${article['prixArticle']}"/> euros</BR>
         </p>
         </li>
     </ul>
-</c:forEach> 
+</c:forEach>
+<%} else {%>
+    <ul class="collection">
+        <li class="collection-item avatar">
+            Panier vide
+        </li>
+    </ul>
+<%}%>
+<h4>TOTAL : ${prix} euros</h4>
+<div class="row">
+    <div class="col s12 m5">
+        <div class="card-panel teal">
+            <form action="panier" method="post">
+            <span class="white-text">
+                    <button class="btn waves-effect waves-light" type="submit" name="vider" value="vider">Vider le panier<i class="material-icons">delete</i></button>
+                    <button class="btn waves-effect waves-light" type="submit" name="valider" value="valider">Valider le panier<i class="material-icons right">send</i></button>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>
 
-<!-- version expérimentale-->
 <div class="col-10 panier">
     <jsp:useBean id="panier" scope="session" class="Modele.ModelePanier" />
     <ul class="collection">
@@ -26,26 +53,19 @@
             <c:otherwise>
                 <c:forEach var="articlesPanier" items="${panier.getArticlePanier()}" varStatus="counter">
                     <form name="item" method="POST" action="#">
+                        <c:out value="${articlesPanier.partNumber}"/> </BR>
                         <input type='hidden' name='itemIndex' value='<c:out value="${counter.count}"/>'>
-                        <input class="button" type="submit" name="action" value="Supprimer"></BR>
+                        <input type='text' name="quantity" value='<c:out value="${articlesPanier.quantity}"/>' size='2'>
+                        <input class="button" type="submit" name="action" value="Delete"></BR>
+
+
+                        Prix/Total : <c:out value="${articlesPanier.totalCost}"/> euros</BR></BR>
                     </form>
                 </c:forEach>   
                 Total du panier: $<c:out value="${panier.getOrderTotal()}"/>
+
             </c:otherwise>
         </c:choose>
         </li>
     </ul>
-</div>
-
-
-<!--boutons vider/valider le panier-->
-<div class="row">
-    <div class="col s12 m5">
-        <div class="card-panel teal">
-            <span class="white-text">
-                <button class="btn waves-effect waves-light" type="submit" name="action" value="Delete">Vider le panier<i class="material-icons">delete</i></button>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Valider le panier<i class="material-icons right">send</i></button>    
-            </span>
-        </div>
-    </div>
 </div>

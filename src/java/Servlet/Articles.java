@@ -29,6 +29,7 @@ public class Articles extends HttpServlet {
     
     private ModeleArticle monModel;
     private List<Article> maListe;
+    private int DUREEPANIER = 60*60*24;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,7 +67,7 @@ public class Articles extends HttpServlet {
         
         maListe = new ArrayList<>();
         monModel = new ModeleArticle();
-        monModel.chargerArticle(maListe);
+        monModel.chargerArticles(maListe);
         request.setAttribute("liste", maListe);
         this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);
     }
@@ -84,36 +85,41 @@ public class Articles extends HttpServlet {
             throws ServletException, IOException {
         String numArticle = request.getParameter("numArticle");
         String nomArticle = request.getParameter("nomArticle");
-//        Cookie[] cookies = request.getCookies();
-        Cookie cookie = new Cookie("Test","Hello World");
-        response.addCookie(cookie);
+        Cookie[] cookies = request.getCookies();
+        Cookie oldCookie;
+        Cookie newCookie;
+//        Cookie cookie = new Cookie("test","HelloWorld");
+//        cookie.setMaxAge(10);
+//        response.addCookie(cookie);
         
-//        for(int i=0; i < cookies.length; i++) {
-//            Cookie MonCookie= cookies[i];
-//            if (MonCookie.getName().equals("panier")) {
-//                String id = cookies[i].getValue();
-//                List<String> listNum = new ArrayList<>(Arrays.asList(id.split(",")));
-//                listNum.add(numArticle);
-//                String listeFinale = String.join(",", listNum);
-//                MonCookie.setValue(listeFinale);
-//                MonCookie.setMaxAge(60*60*24*365);
-//                response.addCookie(MonCookie);
-//            }
-//            else{
-//                List<String> listNum = new ArrayList<>();
-//                listNum.add(numArticle);
-//                String listeFinale = String.join(",", listNum);
-//                MonCookie.setValue(listeFinale);
-//                MonCookie.setMaxAge(60*60*24*365);
-//                response.addCookie(MonCookie);
-//            }
+        for(int i=0; i < cookies.length; i++) {
+            oldCookie= cookies[i];
+            if (oldCookie.getName().equals("panier")) {
+                System.out.println("par ici");
+                String listeArticle = cookies[i].getValue();
+                List<String> listNum = new ArrayList<>(Arrays.asList(listeArticle.split("-")));
+                listNum.add(numArticle);
+                String listeFinale = String.join("-", listNum);
+                newCookie = new Cookie("panier",listeFinale);
+                newCookie.setMaxAge(3600);
+                response.addCookie(newCookie);
+                break;
+            }
+            else{
+                List<String> listNum = new ArrayList<>();
+                listNum.add(numArticle);
+                String listeFinale = String.join("-", listNum);
+                newCookie = new Cookie("panier",listeFinale);
+                newCookie.setMaxAge(3600);
+                response.addCookie(newCookie);
+                break;
+            }
             
-//        }
+        }
         
-        System.out.println(numArticle);
         maListe = new ArrayList<>();
         monModel = new ModeleArticle();
-        monModel.chargerArticle(maListe);
+        monModel.chargerArticles(maListe);
         request.setAttribute("liste", maListe);
         request.setAttribute("ajoutPanier", "Votre article " + nomArticle+" a bien été ajouté au panier");
         this.getServletContext().getRequestDispatcher("/WEB-INF/Article.jsp").forward(request, response);

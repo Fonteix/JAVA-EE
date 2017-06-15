@@ -27,7 +27,7 @@ public class ModeleArticle {
     public ModeleArticle() {
     }
     
-    public void chargerArticle(List<Article> listeArticle){
+    public void chargerArticles(List<Article> listeArticle){
         dbConnexion = new DBConnexion();
         cnx = dbConnexion.getConnection();
         
@@ -53,6 +53,40 @@ public class ModeleArticle {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+    }
+    
+    public Article selectionArticle(int numArticle){
+        dbConnexion = new DBConnexion();
+        cnx = dbConnexion.getConnection();
+        Article article = new Article();
+        
+        try {
+            String requete = "SELECT numArticle, nomArticle, prixArticle, typeArticle FROM ARTICLE where numArticle = ?";
+            PreparedStatement pstmt = cnx.prepareStatement(requete);
+            pstmt.setInt(1, numArticle);
+            ResultSet rst = pstmt.executeQuery();
+            
+            while (rst.next()){
+                int id = rst.getInt(1);
+                String nom = rst.getString(2);
+                int prix = rst.getInt(3);
+                String type = rst.getString(4);
+                article.setNumArticle(id);
+                article.setNomArticle(nom);
+                article.setPrixArticle(prix);
+                article.setTypeArticle(type);
+            }
+            
+            rst.close();
+            pstmt.close();
+            cnx.close();
+            
+            
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return article;
     }
     }
 

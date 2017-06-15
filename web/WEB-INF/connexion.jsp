@@ -7,6 +7,12 @@
         <div class="col s8 offset-s2 center-align card-panel red accent-2"><span class="white-text flow-text"><strong>${erreurConnexion}</strong></span></div>
     </div>
 <% } %>
+
+<% if (request.getAttribute("connexionAchat")!=null) {%>
+    <div class="row">
+        <div class="col s8 offset-s2 center-align card-panel light-green"><span class="white-text flow-text"><strong>${connexionAchat}</strong></span></div>
+    </div>
+<% } %>
     
 <% if (request.getAttribute("deconnexion")!=null) {%>
     

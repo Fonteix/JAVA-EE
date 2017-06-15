@@ -4,10 +4,13 @@
     Author     : p1410833
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Métier.Article"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="Templates/header.jsp" />
+
+
 
 <!-- ARTICLES-->
 <% if (request.getAttribute("ajoutPanier")!=null) {%>
@@ -15,13 +18,7 @@
         <div class="col s8 offset-s2 center-align card-panel light-green"><span class="white-text flow-text"><strong>${ajoutPanier}</strong></span></div>
     </div>
 <% } %>
-<% Cookie[] cookies = request.getCookies();
 
-    for (Cookie cook : cookies){
-        
-    }
-
-%>
 
 <c:forEach items="${liste}" var="article" >
     <form action="Articles" method="post">
