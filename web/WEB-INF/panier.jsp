@@ -67,14 +67,7 @@
                 Total du panier: $<c:out value="${panier.getOrderTotal()}"/>
 
             </c:otherwise>
-        </c:choose>
-
-        
-                        
-                        <c:out value="${panier.numArticle}"/> </BR> 
-                        <!--panier viens de ModelePanier.java-->
-                        <!--numArticle viens de ModeleArticlePanier-->
-                           
+        </c:choose>                           
                     
 
         </li>
